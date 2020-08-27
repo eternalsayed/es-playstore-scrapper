@@ -1,0 +1,21 @@
+{
+  "name": "es-playstore-scrapper",
+  "version": "1.0.0",
+  "description": "Scraps basic information about an app from the Google Playstore using only the package id!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "google",
+    "scrapper",
+    "playstore",
+    "nodejs"
+  ],
+  "author": "Sayed Ahad Abbas",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.2"
+  }
+}
