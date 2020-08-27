@@ -14,8 +14,8 @@ module.exports = {
             const $additional = $("h2:contains('Additional Information')").parent().parent();
             const devLinks = $('a', $("div:contains('Developer') + span", $additional));
             const developer = {
-                name: $('a[href^="/store/apps/dev?id="]', $('c-wiz + div')).text(),
-                pageUrl: storeUrl+$('a[href^="/store/apps/dev?id="]', $('c-wiz + div')).attr('href')
+                name: $('a[href^="/store/apps/dev"]', $('c-wiz + div')).text(),
+                pageUrl: storeUrl+$('a[href^="/store/apps/dev"]', $('c-wiz + div')).attr('href')
             };
             devLinks.each((i, a) => {
                 const $a = $(a);
@@ -44,7 +44,7 @@ module.exports = {
                 installs: $("div:contains('Installs') + span", $additional).text().trim(),
                 currentVersion: $("div:contains('Current Version') + span", $additional).text().trim(),
                 requires: $("div:contains('Requires Android') + span", $additional).text().trim(),
-                contentRating: $("div:contains('Content Rating') + span", $additional).text().trim(),
+                contentRating: $("div:contains('Content Rating') + span", $additional).text().trim().replace(/learn more/i, ''),
                 developer
             };
             return cb(null, result, status);
