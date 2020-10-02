@@ -1,6 +1,6 @@
 {
   "name": "es-playstore-scrapper",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Scraps basic information about an app from the Google Playstore using only the package id!",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,16 @@
     "playstore",
     "nodejs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eternalsayed/es-playstore-scrapper.git"
+  },
   "author": "Sayed Ahad Abbas",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eternalsayed/es-playstore-scrapper/issues"
+  },
+  "homepage": "https://github.com/eternalsayed/es-playstore-scrapper#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "request": "^2.88.2"
