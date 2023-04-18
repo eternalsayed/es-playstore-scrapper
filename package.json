@@ -1,6 +1,6 @@
 {
   "name": "es-playstore-scrapper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Scraps basic information about an app from the Google Playstore using only the package id!",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/eternalsayed/es-playstore-scrapper#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "request": "^2.88.2"
+    "axios": "^1.3.5",
+    "cheerio": "^1.0.0-rc.3"
   }
 }

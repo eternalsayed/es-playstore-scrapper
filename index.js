@@ -1,22 +1,23 @@
 module.exports = {
     getPackageInfo: function(packageId, callback) {
-        const cb = callback? callback :() => {console.log("No callback! Result was: ", ...arguments)};
-        const request = require('request');
+        const cb = callback? callback :(() => console.log("No callback! Result was: ", ...arguments));
+        const axios = require('axios');
         const storeUrl = 'https://play.google.com';
         const url = `${storeUrl}/store/apps/details?id=${packageId}&hl=en`;
-        request.get(url, (error, status, body) => {
-        // console.log('resul: ', error || body);
-            if(error) {
-                return cb(error, null, status);
-            }
+        axios.get(url).then(body => {
             const cheerio = require('cheerio');
             const $ = cheerio.load(body);
             const $additional = $("h2:contains('Additional Information')").parent().parent();
             const devLinks = $('a', $("div:contains('Developer') + span", $additional));
-            const developer = {
-                name: $('a[href^="/store/apps/dev"]', $('c-wiz + div')).text(),
-                pageUrl: storeUrl+$('a[href^="/store/apps/dev"]', $('c-wiz + div')).attr('href')
-            };
+            const devName = $('a[href^="/store/apps/dev"]', $('c-wiz + div')).text();
+            const devUrl = $('a[href^="/store/apps/dev"]', $('c-wiz + div')).attr('href');
+            const developer = {};
+            if(devName) {
+                developer.name = devName;
+            }
+            if(devUrl) {
+                developer.pageUrl = storeUrl + '/' + devUrl;
+            }
             devLinks.each((i, a) => {
                 const $a = $(a);
                 const temp = $a.text().trim();
@@ -47,7 +48,8 @@ module.exports = {
                 contentRating: $("div:contains('Content Rating') + span", $additional).text().trim().replace(/learn more/i, ''),
                 developer
             };
-            return cb(null, result, status);
-        });
+            return cb(null, result);
+        })
+        .catch(cb);
     }
 }
